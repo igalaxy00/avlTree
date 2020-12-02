@@ -9,15 +9,6 @@ class TestAvlTree {
     void testTree() {
 
         avlTree tree = new avlTree();
-
-        /* Constructing tree given in the above figure */
-       tree.root = tree.insert(tree.root, 10);
-        tree.root = tree.insert(tree.root, 20);
-        tree.root = tree.insert(tree.root, 30);
-        tree.root = tree.insert(tree.root, 40);
-        tree.root = tree.insert(tree.root, 50);
-        tree.root = tree.insert(tree.root, 25);
-        /*
         tree.root = tree.insert(tree.root, 12);
         tree.root = tree.insert(tree.root, 8);
         tree.root = tree.insert(tree.root, 18);
@@ -25,17 +16,18 @@ class TestAvlTree {
         tree.root = tree.insert(tree.root, 11);
         tree.root = tree.insert(tree.root, 17);
         tree.root = tree.insert(tree.root, 4);
-        System.out.println(tree.find(17).key);*/
-        assertEquals(tree.find(30).left.key,20);
-		/* The constructed AVL Tree would be
-			30
+        System.out.println(tree.find(17).key);
+        assertEquals(tree.find(8).left.key,5);
+		/* дерево
+			12
 			/ \
-		   20 40
-		   / \  \
-		  10 25  50
+		   8   18
+		  / \   \
+	     5  11   17
+        /
+	   4
 		*/
-        System.out.println("Preorder traversal" +
-                " of constructed tree is : ");
-        tree.preOrder(tree.root);
+        System.out.println("печать дерева в глубину: ");
+        tree.prTree(tree.root);
     }
 }

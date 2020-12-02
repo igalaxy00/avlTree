@@ -4,46 +4,41 @@ public class avlTree {
 
         public Node root;
 
-        // A utility function to get the height of the tree
+       //вычисл высоту
         int height(Node N) {
             if (N == null)
                 return 0;
-
             return N.height;
         }
-        // A utility function to right rotate subtree rooted with y
-        // See the diagram given above.
+
+    // переворачиваем направо
         Node rightRotate(Node y) {
             Node x = y.left;
-            Node T2 = x.right;
+            Node z = x.right;
 
-            // Perform rotation
             x.right = y;
-            y.left = T2;
+            y.left = z;
 
-            // Update heights
+            // высоты меняем
             y.height = Math.max(height(y.left), height(y.right)) + 1;
             x.height = Math.max(height(x.left), height(x.right)) + 1;
-
-            // Return new root
             return x;
         }
 
-        // A utility function to left rotate subtree rooted with x
-        // See the diagram given above.
+        // переворачиваем налево
         Node leftRotate(Node x) {
             Node y = x.right;
-            Node T2 = y.left;
+            Node z = y.left;
 
-            // Perform rotation
+            // вращаем
             y.left = x;
-            x.right = T2;
+            x.right = z;
 
-            // Update heights
+            // меняем высоты длоя актуальности
             x.height = Math.max(height(x.left), height(x.right)) + 1;
             y.height = Math.max(height(y.left), height(y.right)) + 1;
 
-            // Return new root
+            // возвращаем ноый корень
             return y;
         }
 
@@ -56,8 +51,7 @@ public class avlTree {
         }
 
         public Node insert(Node node, int key) {
-
-            /* 1. Perform the normal BST insertion */
+            //обычная вставка узла в дерево
             if (node == null)
                 return (new Node(key));
 
@@ -65,51 +59,48 @@ public class avlTree {
                 node.left = insert(node.left, key);
             else if (key > node.key)
                 node.right = insert(node.right, key);
-            else // Duplicate keys not allowed
-                return node;
+            else
+                return node;// чтобы не дублировать ключи
 
-            /* 2. Update height of this ancestor node */
+            //новая высота предка
             node.height = 1 + Math.max(height(node.left),
                     height(node.right));
 
-		/* 3. Get the balance factor of this ancestor
-			node to check whether this node became
-			unbalanced */
+
+            //проверка баланса чтобы узел не стал несбалансированным
             int balance = getBalance(node);
 
-            // If this node becomes unbalanced, then there
-            // are 4 cases Left Left Case
+           //если не сбалансирован то проверяем все случаи
+            // право право
             if (balance > 1 && key < node.left.key)
                 return rightRotate(node);
 
-            // Right Right Case
+            // лево лево
             if (balance < -1 && key > node.right.key)
                 return leftRotate(node);
 
-            // Left Right Case
+            //  лево право
             if (balance > 1 && key > node.left.key) {
                 node.left = leftRotate(node.left);
                 return rightRotate(node);
             }
 
-            // Right Left Case
+            //  право лево
             if (balance < -1 && key < node.right.key) {
                 node.right = rightRotate(node.right);
                 return leftRotate(node);
             }
 
-            /* return the (unchanged) node pointer */
+            //возвращаем узел
             return node;
         }
 
-        // A utility function to print preorder traversal
-        // of the tree.
-        // The function also prints height of every node
-        public void preOrder(Node node) {
+        // печать дерева в глубину
+        public void prTree(Node node) {
             if (node != null) {
                 System.out.print(node.key + " ");
-                preOrder(node.left);
-                preOrder(node.right);
+                prTree(node.left);
+                prTree(node.right);
             }
         }
 
@@ -118,7 +109,7 @@ public class avlTree {
         for (current=root; current != null; current=key < current.key ? current.left: current.right)
             if (current.key == key)
                 return current;
-        throw new NullPointerException("Такого узла нет");
+        throw new NullPointerException("нет узла");
     }
 
     }
