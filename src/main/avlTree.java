@@ -102,6 +102,8 @@ public class avlTree {
                 prTree(node.left);
                 prTree(node.right);
             }
+            //https://clck.ru/Ey7Az
+            System.out.print("Если хотите узнать о строении avl дерева : https://clck.ru/Ey7Az ");
         }
 
     public Node find(int key) {
