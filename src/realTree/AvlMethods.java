@@ -159,19 +159,19 @@ public class AvlMethods<T extends Comparable<T>> implements SortedSet<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean remove(Object o) {
-        @SuppressWarnings("unchecked")
         T t = (T) o;
         tree.remove(t);
         return tree.changed();
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean containsAll(@NotNull Collection<?> c) {
         if (isEmpty() && c.size() > 0) return false;
         Object[] objects = c.toArray();
         for (Object object : objects) {
-            @SuppressWarnings("unchecked")
             T t = (T) object;
             if (!contains(t)) return false;
         }
@@ -185,11 +185,11 @@ public class AvlMethods<T extends Comparable<T>> implements SortedSet<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean retainAll( Collection<?> c) {
         Tree<T> newRoot = new Tree<>();
         Object[] elements = c.toArray();
         for (Object o : elements) {
-            @SuppressWarnings("unchecked")
             T t = (T) o;
             if (contains(t)) {
                 newRoot.insert(t);
@@ -204,8 +204,7 @@ public class AvlMethods<T extends Comparable<T>> implements SortedSet<T> {
         c.forEach(E -> {
             @SuppressWarnings("unchecked")
             T t = (T) E;
-            remove(t);
-        });
+            remove(t); });
         return true;
     }
 

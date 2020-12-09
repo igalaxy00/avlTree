@@ -13,7 +13,7 @@ public class Tree<T extends Comparable<T>> {
     }
 
     /**
-     * метод ниже осуществляет малый левый
+     * метод ниже осуществляет малое левое вращение
      *
      * @param node узел который вращаем
      */
@@ -79,7 +79,7 @@ public class Tree<T extends Comparable<T>> {
 
 
     /**
-     * метод ниже осуществляет поиск максимального элемента в левом поддереве
+     * метод ниже осуществляет поиск максимального элемента в правом поддереве
      *
      * @param node узел относительно которого изем максимальный
      */
@@ -102,7 +102,7 @@ public class Tree<T extends Comparable<T>> {
             closest = nextNode(node.left, closest, key);
         } else if (compareResult > 0 && node.right != null) {
             closest = nextNode(node.right, closest, key);
-        } else /*if (compareResult == 0)*/ {
+        } else {
             if (node.right != null) {
                 return minimum(node.right);
             }
@@ -138,7 +138,7 @@ public class Tree<T extends Comparable<T>> {
 
 
     /**
-     * слуэебный метод ниже осуществляет вставку узла в дерево
+     * служебный метод ниже осуществляет вставку узла в дерево
      *
      * @param node узел который вставляем
      * @param key  ключ узла который вставляем
@@ -202,7 +202,7 @@ public class Tree<T extends Comparable<T>> {
             n.left = remove(n.left, key);
         } else if (compareResult > 0 && n.right != null) {
             n.right = remove(n.right, key);
-        } else /*if (compareResult == 0)*/ {
+        } else  {
             size--;
             wasChanged = true;
             if (n.right == null) return n.left;
