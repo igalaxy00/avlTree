@@ -1,13 +1,10 @@
 
 import realTree.AvlMethods;
 import org.junit.jupiter.api.Test;
-
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class TestAvlTree {
